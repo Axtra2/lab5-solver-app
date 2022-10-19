@@ -14,8 +14,14 @@ body {
   gap: .5em;
 }
 
-#form .submit {
-  margin-top: .5em;
+#form .invalid-feedback {
+  display: none;
+  font-style: italic;
+  font-size: .9rem;
+}
+
+#form :invalid~.invalid-feedback {
+  display: initial;
 }
 
 #solution {
