@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <form id="form">
+        <fieldset>
+            <legend>Цена продукции</legend>
+            <input type="number" step="any" name="price" required value="5500">
+        </fieldset>
+        <fieldset>
+            <legend>Себестоимость</legend>
+            <input type="number" step="any" name="cost" required value="2500">
+        </fieldset>
+        <fieldset>
+            <legend>Годовой объем производства и реализации продукции</legend>
+            <input type="number" step="any" name="volume" required value="820">
+        </fieldset>
+        <fieldset>
+            <legend>Доля переменных расходов в себестоимости продукции</legend>
+            <input type="number" step="any" name="share" required value="50">
+        </fieldset>
+        <input type="submit" value="Рассчитать">
+    </form>
+    <ul id="output"></ul>
+</body>
+
+</html>
