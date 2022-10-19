@@ -7,6 +7,11 @@ body {
   gap: 2em;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 #form {
   width: 16em;
   display: flex;
@@ -31,7 +36,6 @@ body {
 }
 
 #solution {
-  padding: 0;
   list-style-type: none;
 }
 
@@ -42,4 +46,32 @@ body {
 #solution h4 {
   margin: 0;
   margin-bottom: .5em;
+}
+
+.questions {
+  width: 20em;
+  list-style-type: none;
+}
+
+.question {
+  padding-block: 1.2em;
+  padding-inline: .5em;
+}
+
+.question h4 {
+  margin-top: 0;
+  margin-bottom: .5em;
+}
+
+.question:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+.answers {
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.answer.correct {
+  font-weight: bold;
 }

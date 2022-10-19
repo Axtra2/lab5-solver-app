@@ -19,7 +19,6 @@ function isInvalid(num) {
 function render(state) {
   solution.replaceChildren()
 
-  
   if (!state.valid) {
     solution.innerText = "Заполните все поля формы"
     return
@@ -36,7 +35,7 @@ function render(state) {
       const heading = document.createElement("h4")
       const span = document.createElement("span")
 
-      heading.innerText = key
+      heading.innerText = key.replace("step", "Шаг ")
       span.innerText = Array.isArray(value) ? value.map(formatNumber).join('\n') : formatNumber(value)
 
       item.appendChild(heading)
