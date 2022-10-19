@@ -8,11 +8,25 @@ function formatNumber(num) {
   return num.toFixed(3)
 }
 
+function isValid(num) {
+  return typeof num === 'number' && Number.isFinite(num)
+}
+
+function isInvalid(num) {
+  return !isValid(num)
+}
+
 function render(state) {
   solution.replaceChildren()
 
+  
   if (!state.valid) {
     solution.innerText = "Заполните все поля формы"
+    return
+  }
+
+  if (Object.values(state.solution).some((v) => Array.isArray(v) ? v.some(isInvalid) : isInvalid(v))) {
+    solution.innerText = "Введены некорректные данные"
     return
   }
 
