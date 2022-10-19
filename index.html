@@ -11,30 +11,6 @@
 </head>
 
 <body>
-  <form id="form">
-    <h3>Входные данные</h3>
-    <fieldset>
-      <legend>Цена продукции, руб./т.</legend>
-      <input type="number" step="any" name="price" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Себестоимость, руб./т.</legend>
-      <input type="number" step="any" name="cost" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Годовой объем производства и реализации продукции, тыс. т.</legend>
-      <input type="number" step="any" name="volume" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Доля переменных расходов в себестоимости продукции, %</legend>
-      <input type="number" step="any" name="share" min="0" max="100" required>
-      <span class="invalid-feedback">число между 0 и 100</span>
-    </fieldset>
-  </form>
-
   <ul class="questions">
     <h3>Шаг 1</h3>
     <span>Варианты вопросов</span>
@@ -123,6 +99,30 @@
       </ul>
     </li>
   </ul>
+
+  <form id="form">
+    <h3>Входные данные</h3>
+    <fieldset>
+      <legend>Цена продукции, руб./т.</legend>
+      <input type="number" step="any" name="price" min="0" required>
+      <span class="invalid-feedback">неотрицательное число</span>
+    </fieldset>
+    <fieldset>
+      <legend>Себестоимость, руб./т.</legend>
+      <input type="number" step="any" name="cost" min="0" required>
+      <span class="invalid-feedback">неотрицательное число</span>
+    </fieldset>
+    <fieldset>
+      <legend>Годовой объем производства и реализации продукции, тыс. т.</legend>
+      <input type="number" step="any" name="volume" min="0" required>
+      <span class="invalid-feedback">неотрицательное число</span>
+    </fieldset>
+    <fieldset>
+      <legend>Доля переменных расходов в себестоимости продукции, %</legend>
+      <input type="number" step="any" name="share" min="0" max="100" required>
+      <span class="invalid-feedback">число между 0 и 100</span>
+    </fieldset>
+  </form>
 
   <div>
     <h3>Шаги 3 — 13</h3>
