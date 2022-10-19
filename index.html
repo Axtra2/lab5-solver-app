@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="index.js" defer></script>
+</head>
+
+<body>
+  <form id="form">
+    <h3>Входные данные</h3>
+    <fieldset>
+      <legend>Цена продукции, руб.</legend>
+      <input type="number" step="any" name="price" required>
+    </fieldset>
+    <fieldset>
+      <legend>Себестоимость, руб.</legend>
+      <input type="number" step="any" name="cost" required>
+    </fieldset>
+    <fieldset>
+      <legend>Годовой объем производства и реализации продукции, тысяч тонн</legend>
+      <input type="number" step="any" name="volume" required>
+    </fieldset>
+    <fieldset>
+      <legend>Доля переменных расходов в себестоимости продукции, %</legend>
+      <input type="number" step="any" name="share" min="0" max="100" required>
+    </fieldset>
+  </form>
+  <div>
+    <h3>Результат</h3>
+    <ul id="solution">
+    </ul>
+  </div>
+</body>
+
+</html>

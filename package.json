@@ -1,0 +1,25 @@
+{
+  "name": "lab5-solver-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://Axtra2.github.io/lab5-solver-app",
+  "scripts": {
+    "serve": "serve",
+    "deploy": "gh-pages -d ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axtra2/lab5-solver-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axtra2/lab5-solver-app/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "serve": "^14.0.1"
+  }
+}
