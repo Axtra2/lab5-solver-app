@@ -14,6 +14,11 @@ body {
   gap: .5em;
 }
 
+#form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
 #form .invalid-feedback {
   display: none;
   font-style: italic;
