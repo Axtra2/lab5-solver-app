@@ -3,8 +3,13 @@ import solve from './solve.js'
 const solutionEl = document.getElementById("solution")
 const questionsEl = document.getElementById("questions")
 const searchEl = document.getElementById("search")
+const searchForm = document.getElementById("search-form")
 const formEl = document.getElementById("form")
-const inputs = formEl.querySelectorAll('input')
+const themeToggle = document.getElementById("theme-toggle")
+
+const showMore = document.createElement('button')
+showMore.classList.add('show-more')
+showMore.textContent = 'Показать ещё'
 
 const initQuestions = []
 
@@ -61,8 +66,14 @@ function render(state) {
 
   questionsEl.replaceChildren()
 
-  state.questions
+  const questions = state.limit === 0 ? state.questions : state.questions.slice(0, state.limit)
+
+  questions
     .forEach((q) => renderQuestion(q, state))
+
+  if (state.limit !== 0) {
+    questionsEl.appendChild(showMore)
+  }
 
   solutionEl.replaceChildren()
 
@@ -75,7 +86,7 @@ function render(state) {
   }
 
   if (Object.values(state.solution).some((v) => Array.isArray(v) ? v.some(isInvalid) : isInvalid(v))) {
-    Element('span')
+    const placeholder = document.createElement('span')
     placeholder.classList.add('placeholder')
     placeholder.textContent = "Введены некорректные данные"
     solutionEl.appendChild(placeholder)
@@ -105,6 +116,7 @@ function app() {
     questions: [],
     valid: false,
     solution: {},
+    limit: 0,
   }
 
   const handleFormInput = () => {
@@ -117,13 +129,17 @@ function app() {
     render(state)
   }
 
+  formEl.addEventListener("input", handleFormInput)
+
   const handleSearchInput = () => {
     const { value } = searchEl
     state.query = value
     state.uppercase = hasUpperCase(value)
     if (value === '') {
-      state.questions = initQuestions
+      state.limit = 0
+      state.questions = initQuestions.slice()
     } else {
+      state.limit = 3
       state.questions
         .sort((a, b) =>
           ldf(state.query.trim(), state.uppercase ? a.question : a.question.toLowerCase())
@@ -132,18 +148,41 @@ function app() {
     render(state)
   }
 
-  formEl.addEventListener("input", handleFormInput)
-
   searchEl.addEventListener("input", handleSearchInput)
 
-  handleFormInput()
+  const handleReset = () => {
+    console.log('reset')
+    state.questions = initQuestions.slice()
+    state.query = ''
+    state.limit = 0
+    state.uppercase = false
+    render(state)
+  }
+
+  searchForm.addEventListener('reset', handleReset)
+
+  const handleShowMore = () => {
+    state.limit = 0
+    render(state)
+  }
+
+  showMore.addEventListener('click', handleShowMore)
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('night')
+  }
+
+  themeToggle.addEventListener('click', toggleTheme)
 
   fetch("./questions.json")
     .then(res => res.json())
     .then(data => {
       initQuestions.push(...data)
       state.questions = data.slice()
-    }).then(handleSearchInput)
+    }).then(() => {
+      handleFormInput()
+      handleSearchInput()
+    })
 }
 
 function parseForm(form) {
