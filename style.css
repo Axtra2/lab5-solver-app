@@ -1,4 +1,29 @@
+:root {
+  --color: black;
+  --bg-color: white;
+  --focus-border-color: rgb(27, 134, 240);
+  --focus-shadow-color: rgba(81, 162, 243, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  color: var(--color);
+  background-color: var(--bg-color);
+}
+
+.night,
+.night * {
+  --color: white;
+  --bg-color: #111;
+}
+
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
   margin: 0;
   padding-block: 1em;
   padding-inline: 2em;
@@ -10,6 +35,53 @@ body {
 ul {
   margin: 0;
   padding: 0;
+}
+
+input {
+  background-color: white;
+  color: black;
+}
+
+input::selection {
+  background-color: black;
+  color: white
+}
+
+input[type=reset] {
+  display: block;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: .1em;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  color: var(--color);
+  font: 1rem serif;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: .1em;
+  background-color: var(--bg-color);
+  font: 1rem serif;
+  color: var(--color);
+}
+
+:focus {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--focus-border-color);
+  border-radius: .1em;
+}
+
+input[type=reset]:hover,
+button:hover,
+:focus {
+  outline: .1em solid var(--bg-color);
+  box-shadow: 0 0 0 .2em var(--focus-shadow-color);
 }
 
 .steps-section {
@@ -71,12 +143,33 @@ input:valid~.valid-feedback {
 .search-bar {
   display: flex;
   flex-direction: column;
-  gap: .5em
+  gap: .5em;
+  overflow: visible;
+}
+
+#search-form {
+  width: fit-content;
+  display: flex;
+  gap: .5em;
+  overflow: visible;
+}
+
+#search-form>* {
+  margin-block: .1em;
+}
+
+.show-more {
+  position: relative;
+  translate: 0 -55%;
+  padding-inline: 1em;
 }
 
 .questions {
   width: 20em;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .question {
@@ -89,7 +182,7 @@ input:valid~.valid-feedback {
 }
 
 .question:not(:last-child) {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color);
 }
 
 .answers {
@@ -99,4 +192,21 @@ input:valid~.valid-feedback {
 
 .answer.correct {
   font-weight: bold;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 1em;
+  left: 2em;
+  height: 1.3em;
+  aspect-ratio: 1/1;
+  border: 2px solid transparent;
+  outline: .1em solid transparent;
+  box-shadow: 0 0 .2em transparent;
+  opacity: .5;
+}
+
+
+#theme-toggle:hover {
+  opacity: 1;
 }

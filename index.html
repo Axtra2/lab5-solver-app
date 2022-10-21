@@ -15,7 +15,10 @@
     <h3>Шаг 1</h3>
     <div class="search-bar">
       <label for="search">Поиск</label>
-      <input type="text" class="search" id="search">
+      <form id="search-form">
+        <input type="text" class="search" id="search">
+        <input type="reset" value="reset">
+      </form>
     </div>
     <ul class="questions" id="questions">
     </ul>
@@ -53,6 +56,8 @@
     <ul id="solution">
     </ul>
   </div>
+
+  <button id="theme-toggle">👁</button>
 </body>
 
 </html>

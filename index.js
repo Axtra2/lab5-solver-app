@@ -3,8 +3,13 @@ import solve from './solve.js'
 const solutionEl = document.getElementById("solution")
 const questionsEl = document.getElementById("questions")
 const searchEl = document.getElementById("search")
+const searchForm = document.getElementById("search-form")
 const formEl = document.getElementById("form")
-const inputs = formEl.querySelectorAll('input')
+const themeToggle = document.getElementById("theme-toggle")
+
+const showMore = document.createElement('button')
+showMore.classList.add('show-more')
+showMore.textContent = 'Показать ещё'
 
 const initQuestions = []
 
@@ -46,7 +51,7 @@ function renderQuestion({ question, answers }, state) {
   list.append(...items)
 
   // const dist = document.createElement('li')
-  // dist.textContent = ldf(state.query.trim(), state.uppercase ? question : question.toLowerCase())
+  // dist.textContent = dldf(state.query.trim(), state.uppercase ? question : question.toLowerCase())
 
   // list.appendChild(dist)
 
@@ -61,8 +66,14 @@ function render(state) {
 
   questionsEl.replaceChildren()
 
-  state.questions
+  const questions = state.limit === 0 ? state.questions : state.questions.slice(0, state.limit)
+
+  questions
     .forEach((q) => renderQuestion(q, state))
+
+  if (state.limit !== 0) {
+    questionsEl.appendChild(showMore)
+  }
 
   solutionEl.replaceChildren()
 
@@ -105,6 +116,7 @@ function app() {
     questions: [],
     valid: false,
     solution: {},
+    limit: 0,
   }
 
   const handleFormInput = () => {
@@ -117,33 +129,60 @@ function app() {
     render(state)
   }
 
+  formEl.addEventListener("input", handleFormInput)
+
   const handleSearchInput = () => {
     const { value } = searchEl
     state.query = value
     state.uppercase = hasUpperCase(value)
     if (value === '') {
-      state.questions = initQuestions
+      state.limit = 0
+      state.questions = initQuestions.slice()
     } else {
+      state.limit = 3
       state.questions
         .sort((a, b) =>
-          ldf(state.query.trim(), state.uppercase ? a.question : a.question.toLowerCase())
-          - ldf(state.query.trim(), state.uppercase ? b.question : b.question.toLowerCase()))
+          dldf(state.query.trim(), state.uppercase ? a.question : a.question.toLowerCase())
+          - dldf(state.query.trim(), state.uppercase ? b.question : b.question.toLowerCase()))
     }
     render(state)
   }
 
-  formEl.addEventListener("input", handleFormInput)
-
   searchEl.addEventListener("input", handleSearchInput)
 
-  handleFormInput()
+  const handleReset = () => {
+    console.log('reset')
+    state.questions = initQuestions.slice()
+    state.query = ''
+    state.limit = 0
+    state.uppercase = false
+    render(state)
+  }
+
+  searchForm.addEventListener('reset', handleReset)
+
+  const handleShowMore = () => {
+    state.limit = 0
+    render(state)
+  }
+
+  showMore.addEventListener('click', handleShowMore)
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('night')
+  }
+
+  themeToggle.addEventListener('click', toggleTheme)
 
   fetch("./questions.json")
     .then(res => res.json())
     .then(data => {
       initQuestions.push(...data)
       state.questions = data.slice()
-    }).then(handleSearchInput)
+    }).then(() => {
+      handleFormInput()
+      handleSearchInput()
+    })
 }
 
 function parseForm(form) {
@@ -193,6 +232,56 @@ function ldf(s1, s2) {
       [temp, dp[x]] = updateValues(temp, dp[x], dp[x - 1]);
     }
     res = Math.min(res, dp[dp.length - 1])
+  }
+  return res
+}
+
+/**
+ * Damerau-Levenshtein distance (fuzzy)
+ *  @param {string} query query string
+ *  @param {string} text  text string
+ *  @return {number} distance between strings
+ */
+function dldf(query, text) {
+  let dp = []
+  for (let i = 0; i <= text.length; ++i) {
+    let row = []
+    for (let j = 0; j <= query.length; ++j) {
+      row.push(0)
+    }
+    dp.push(row)
+  }
+  let res = Math.max(text.length, query.length)
+  for (let i = 0; i <= text.length; ++i) {
+    for (let j = 0; j <= query.length; ++j) {
+      if (Math.min(i, j) == 0) {
+        dp[i][j] = (j == 0 ? 0 : j)
+      } else {
+        let c = 1
+        if (text[i - 1] === query[j - 1]) {
+          c = 0
+        }
+        if (
+          i > 1 && j > 1 &&
+          text[i - 1] == query[j - 2] &&
+          text[i - 2] == query[j - 1]
+        ) {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + c,
+            dp[i - 2][j - 2] + 1
+          )
+        } else {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + c
+          )
+        }
+      }
+    }
+    res = Math.min(res, dp[i][query.length])
   }
   return res
 }
