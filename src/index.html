@@ -11,127 +11,45 @@
 </head>
 
 <body>
-  <form id="search">
-    <h3>Поиск</h3>
-    <fieldset>
-      <input type="text" name="querry">
-    </fieldset>
-  </form>
-  <ul class="questions" id="questions">
+  <div class="steps-section">
     <h3>Шаг 1</h3>
-    <span>Варианты вопросов</span>
-    <li class="question">
-      <h4>Для снижения значения точки безубыточности необходимо:</h4>
-      <ul class="answers">
-        <li class="answer correct">снизить годовые условно-постоянные расходы</li>
-        <li class="answer">снизить цену продукции</li>
-        <li class="answer">увеличить удельные переменные расходы</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Для снижения значения точки безубыточности необходимо: </h4>
-      <ul class="answers">
-        <li class="answer">повысить условно-постоянные расходы</li>
-        <li class="answer correct">увеличить цену продукции</li>
-        <li class="answer">увеличить удельные переменные расходы</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Для снижения значения точки безубыточности необходимо: </h4>
-      <ul class="answers">
-        <li class="answer">повысить условно-постоянные расходы</li>
-        <li class="answer">снизить цену продукции</li>
-        <li class="answer correct">снизить удельные переменные расходы</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>С ростом цены угол наклона линии выручки относительно оси абсцисс:</h4>
-      <ul class="answers">
-        <li class="answer correct">увеличится</li>
-        <li class="answer">уменьшится</li>
-        <li class="answer">не изменится</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>С ростом годовой суммы условно-постоянных расходов:</h4>
-      <ul class="answers">
-        <li class="answer">угол наклона линии себестоимости относительно оси абсцисс увеличится</li>
-        <li class="answer correct">линия себестоимости сдвинется вверх относительно оси абсцисс</li>
-        <li class="answer">линия себестоимости сдвинется вниз относительно оси абсцисс</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Коэффициент операционного рычага показывает:</h4>
-      <ul class="answers">
-        <li class="answer">на сколько процентов увеличится прибыль при снижении выручки на один процент</li>
-        <li class="answer">на сколько процентов увеличится выручка при увеличении прибыли на один процент</li>
-        <li class="answer correct">на сколько процентов увеличится прибыль при увеличении выручки на один процент</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Порог рентабельности определяется как:</h4>
-      <ul class="answers">
-        <li class="answer">отношение критического объема реализации в натуральном выражении к цене реализации продукции
-        </li>
-        <li class="answer correct">
-          произведение критического объема реализации в натуральном выражении на цену реализации
-          продукции
-        </li>
-        <li class="answer">сумма маржинальной прибыли и условно-постоянных расходов</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Точка критического объема производства - это точка, в которой:</h4>
-      <ul class="answers">
-        <li class="answer correct">выручка от реализации продукции равна полной себестоимости</li>
-        <li class="answer">минимизируется полная себестоимость</li>
-        <li class="answer">максимизируется прибыль</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Порог рентабельности продукции (в натуральных единицах) </h4>
-      <ul class="answers">
-        <li class="answer correct">постоянных затрат к маржинальному доходу на единицу продукции</li>
-        <li class="answer">выручки от реализации продукции к постоянным затратам</li>
-        <li class="answer">фактического объема продаж к маржинальному доходу</li>
-      </ul>
-    </li>
-    <li class="question">
-      <h4>Прямые удельные затраты в себестоимости единицы продукции при росте объема производства:</h4>
-      <ul class="answers">
-        <li class="answer">увеличиваются</li>
-        <li class="answer correct">не изменяются</li>
-        <li class="answer">снижаются</li>
-      </ul>
-    </li>
-  </ul>
+    <div class="search-bar">
+      <label for="search">Поиск</label>
+      <input type="text" class="search" id="search">
+    </div>
+    <ul class="questions" id="questions">
+    </ul>
+  </div>
 
-  <form id="form">
-    <h3>Входные данные</h3>
-    <fieldset>
-      <legend>Цена продукции, руб./т.</legend>
-      <input type="number" step="any" name="price" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Себестоимость, руб./т.</legend>
-      <input type="number" step="any" name="cost" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Годовой объем производства и реализации продукции, тыс. т.</legend>
-      <input type="number" step="any" name="volume" min="0" required>
-      <span class="invalid-feedback">неотрицательное число</span>
-    </fieldset>
-    <fieldset>
-      <legend>Доля переменных расходов в себестоимости продукции, %</legend>
-      <input type="number" step="any" name="share" min="0" max="100" required>
-      <span class="invalid-feedback">число между 0 и 100</span>
-    </fieldset>
-  </form>
-
-  <div>
+  <div class="steps-section">
     <h3>Шаги 3 — 13</h3>
+    <form id="form">
+      <h4>Входные данные</h4>
+      <fieldset>
+        <legend>Цена продукции, руб./т.</legend>
+        <input type="number" step="any" name="price" min="0" required>
+        <span class="invalid-feedback">неотрицательное число</span>
+        <span class="valid-feedback">ツ</span>
+      </fieldset>
+      <fieldset>
+        <legend>Себестоимость, руб./т.</legend>
+        <input type="number" step="any" name="cost" min="0" required>
+        <span class="invalid-feedback">неотрицательное число</span>
+        <span class="valid-feedback">ツ</span>
+      </fieldset>
+      <fieldset>
+        <legend>Годовой объем производства и реализации продукции, тыс. т.</legend>
+        <input type="number" step="any" name="volume" min="0" required>
+        <span class="invalid-feedback">неотрицательное число</span>
+        <span class="valid-feedback">ツ</span>
+      </fieldset>
+      <fieldset>
+        <legend>Доля переменных расходов в себестоимости продукции, %</legend>
+        <input type="number" step="any" name="share" min="0" max="100" required>
+        <span class="invalid-feedback">число между 0 и 100</span>
+        <span class="valid-feedback">ツ</span>
+      </fieldset>
+    </form>
     <ul id="solution">
     </ul>
   </div>
