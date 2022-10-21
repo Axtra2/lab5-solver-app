@@ -52,37 +52,36 @@ input[type=reset] {
   border-width: 1px;
   border-style: solid;
   border-color: black;
-}
-
-button {
-  border: none;
-}
-
-button,
-input[type=reset] {
+  border-radius: .1em;
   cursor: pointer;
   background-color: var(--bg-color);
   color: var(--color);
   font: 1rem serif;
 }
 
-button,
-input[type=reset],
-:focus {
+button {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
   border-radius: .1em;
-}
-
-button:hover,
-input[type=reset]:hover,
-:focus {
-  outline: .1em solid var(--bg-color);
-  box-shadow: 0 0 0 .2em var(--focus-shadow-color);
+  background-color: var(--bg-color);
+  font: 1rem serif;
+  color: var(--color);
 }
 
 :focus {
   border-width: 2px;
   border-style: solid;
   border-color: var(--focus-border-color);
+  border-radius: .1em;
+}
+
+input[type=reset]:hover,
+button:hover,
+:focus {
+  outline: .1em solid var(--bg-color);
+  box-shadow: 0 0 0 .2em var(--focus-shadow-color);
 }
 
 .steps-section {
@@ -199,12 +198,15 @@ input:valid~.valid-feedback {
   position: absolute;
   top: 1em;
   left: 2em;
-  width: 1.2em;
+  height: 1.3em;
   aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: var(--color);
+  border: 2px solid transparent;
+  outline: .1em solid transparent;
+  box-shadow: 0 0 .2em transparent;
+  opacity: .5;
 }
 
-/* #theme-toggle span {
-  translate: 0 -6%;
-} */
+
+#theme-toggle:hover {
+  opacity: 1;
+}
