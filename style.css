@@ -4,7 +4,7 @@ body {
   padding-inline: 2em;
   display: flex;
   flex-wrap: wrap;
-  gap: 2em;
+  column-gap: 5em;
 }
 
 ul {
@@ -12,11 +12,21 @@ ul {
   padding: 0;
 }
 
+.steps-section {
+  width: 20em;
+  padding-block: 1.2em;
+}
+
 #form {
-  width: 16em;
+  /* width: 16em; */
   display: flex;
   flex-direction: column;
   gap: .5em;
+}
+
+#form h4 {
+  margin-top: 0;
+  margin-bottom: .5em;
 }
 
 #form fieldset {
@@ -24,18 +34,24 @@ ul {
   flex-direction: column;
 }
 
-#form .invalid-feedback {
+.valid-feedback,
+.invalid-feedback {
   display: none;
   margin-top: .4em;
-  font-style: italic;
   font-size: .9rem;
 }
 
-#form :invalid~.invalid-feedback {
-  display: block;
+input:invalid~.invalid-feedback {
+  display: initial;
+  font-style: italic;
+}
+
+input:valid~.valid-feedback {
+  display: initial;
 }
 
 #solution {
+  margin-top: 1em;
   list-style-type: none;
 }
 
@@ -48,6 +64,16 @@ ul {
   margin-bottom: .5em;
 }
 
+.placeholder {
+  font-style: italic;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: .5em
+}
+
 .questions {
   width: 20em;
   list-style-type: none;
@@ -55,7 +81,6 @@ ul {
 
 .question {
   padding-block: 1.2em;
-  padding-inline: .5em;
 }
 
 .question h4 {
