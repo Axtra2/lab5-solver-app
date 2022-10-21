@@ -6,12 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solver</title>
-  <link rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="style.css">
   <script type="module" src="index.js" defer></script>
 </head>
 
 <body>
-  <ul class="questions">
+  <form id="search">
+    <h3>Поиск</h3>
+    <fieldset>
+      <input type="text" name="querry">
+    </fieldset>
+  </form>
+  <ul class="questions" id="questions">
     <h3>Шаг 1</h3>
     <span>Варианты вопросов</span>
     <li class="question">
