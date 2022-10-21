@@ -46,7 +46,7 @@ function renderQuestion({ question, answers }, state) {
   list.append(...items)
 
   // const dist = document.createElement('li')
-  // dist.textContent = ldf(state.query.trim(), state.uppercase ? question : question.toLowerCase())
+  // dist.textContent = dldf(state.query.trim(), state.uppercase ? question : question.toLowerCase())
 
   // list.appendChild(dist)
 
@@ -126,8 +126,8 @@ function app() {
     } else {
       state.questions
         .sort((a, b) =>
-          ldf(state.query.trim(), state.uppercase ? a.question : a.question.toLowerCase())
-          - ldf(state.query.trim(), state.uppercase ? b.question : b.question.toLowerCase()))
+          dldf(state.query.trim(), state.uppercase ? a.question : a.question.toLowerCase())
+          - dldf(state.query.trim(), state.uppercase ? b.question : b.question.toLowerCase()))
     }
     render(state)
   }
@@ -193,6 +193,56 @@ function ldf(s1, s2) {
       [temp, dp[x]] = updateValues(temp, dp[x], dp[x - 1]);
     }
     res = Math.min(res, dp[dp.length - 1])
+  }
+  return res
+}
+
+/**
+ * Damerau-Levenshtein distance (fuzzy)
+ *  @param {string} query query string
+ *  @param {string} text  text string
+ *  @return {number} distance between strings
+ */
+function dldf(query, text) {
+  let dp = []
+  for (let i = 0; i <= text.length; ++i) {
+    let row = []
+    for (let j = 0; j <= query.length; ++j) {
+      row.push(0)
+    }
+    dp.push(row)
+  }
+  let res = Math.max(text.length, query.length)
+  for (let i = 0; i <= text.length; ++i) {
+    for (let j = 0; j <= query.length; ++j) {
+      if (Math.min(i, j) == 0) {
+        dp[i][j] = (j == 0 ? 0 : j)
+      } else {
+        let c = 1
+        if (text[i - 1] === query[j - 1]) {
+          c = 0
+        }
+        if (
+          i > 1 && j > 1 &&
+          text[i - 1] == query[j - 2] &&
+          text[i - 2] == query[j - 1]
+        ) {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + c,
+            dp[i - 2][j - 2] + 1
+          )
+        } else {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + c
+          )
+        }
+      }
+    }
+    res = Math.min(res, dp[i][query.length])
   }
   return res
 }
