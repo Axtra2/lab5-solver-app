@@ -12,6 +12,13 @@
   background-color: var(--bg-color);
 }
 
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color: white;
+    --bg-color: #111;
+  }
+} */
+
 .night,
 .night * {
   --color: white;
@@ -198,7 +205,7 @@ input:valid~.valid-feedback {
   position: absolute;
   top: 1em;
   left: 2em;
-  height: 1.3em;
+  /* height: 1.3em; */
   aspect-ratio: 1/1;
   border: 2px solid transparent;
   outline: .1em solid transparent;
