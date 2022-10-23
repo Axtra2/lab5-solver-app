@@ -58,8 +58,8 @@ input[type=reset] {
   display: block;
   border-width: 1px;
   border-style: solid;
-  border-color: black;
-  border-radius: .1em;
+  border-color: var(--color);
+  border-radius: .2em;
   cursor: pointer;
   background-color: var(--bg-color);
   color: var(--color);
@@ -103,30 +103,45 @@ button:hover,
   gap: .5em;
 }
 
+.input-group {
+  padding: .5em;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.input-group:not(:last-child) {
+  margin-bottom: .5em;
+}
+
+.input-group label {
+  margin-bottom: .3em;
+}
+
+.feedback {
+  display: none;
+  margin-top: .4em;
+  font-size: .9rem;
+}
+
+input:valid~.feedback.valid {
+  display: initial;
+}
+
+input:invalid~.feedback.invalid {
+  display: initial;
+  font-style: italic;
+}
+
 #form h4 {
   margin-top: 0;
   margin-bottom: .5em;
 }
 
 #form fieldset {
+  /* height: 4em; */
   display: flex;
   flex-direction: column;
-}
-
-.valid-feedback,
-.invalid-feedback {
-  display: none;
-  margin-top: .4em;
-  font-size: .9rem;
-}
-
-input:invalid~.invalid-feedback {
-  display: initial;
-  font-style: italic;
-}
-
-input:valid~.valid-feedback {
-  display: initial;
 }
 
 #solution {
@@ -142,6 +157,7 @@ input:valid~.valid-feedback {
 }
 
 .placeholder {
+  margin-top: 1em;
   font-style: italic;
 }
 
@@ -223,4 +239,8 @@ input:valid~.valid-feedback {
 
 noscript {
   color: red;
+}
+
+.hidden {
+  display: none;
 }

@@ -6,6 +6,7 @@ const searchEl = document.getElementById("search")
 const searchForm = document.getElementById("search-form")
 const formEl = document.getElementById("form")
 const themeToggle = document.getElementById("theme-toggle")
+const placeholder = document.querySelector(".placeholder")
 
 const showMore = document.createElement('button')
 showMore.classList.add('show-more')
@@ -62,8 +63,6 @@ function renderQuestion({ question, answers }, state) {
 }
 
 function render(state) {
-  console.log(state)
-
   questionsEl.replaceChildren()
 
   const questions = state.limit === 0 ? state.questions : state.questions.slice(0, state.limit)
@@ -78,20 +77,18 @@ function render(state) {
   solutionEl.replaceChildren()
 
   if (!state.valid) {
-    const placeholder = document.createElement('span')
-    placeholder.classList.add('placeholder')
+    placeholder.classList.remove('hidden')
     placeholder.textContent = "Заполните все поля формы"
-    solutionEl.appendChild(placeholder)
     return
   }
 
   if (Object.values(state.solution).some((v) => Array.isArray(v) ? v.some(isInvalid) : isInvalid(v))) {
-    const placeholder = document.createElement('span')
-    placeholder.classList.add('placeholder')
+    placeholder.classList.remove('hidden')
     placeholder.textContent = "Введены некорректные данные"
-    solutionEl.appendChild(placeholder)
     return
   }
+
+  placeholder.classList.add('hidden')
 
   Object.entries(state.solution)
     .forEach(([key, value]) => {
@@ -151,7 +148,6 @@ function app() {
   searchEl.addEventListener("input", handleSearchInput)
 
   const handleReset = () => {
-    console.log('reset')
     state.questions = initQuestions.slice()
     state.query = ''
     state.limit = 0
