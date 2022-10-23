@@ -130,7 +130,6 @@ input:valid~.valid-feedback {
 }
 
 #solution {
-  margin-top: 1em;
   list-style-type: none;
 }
 
@@ -139,7 +138,6 @@ input:valid~.valid-feedback {
 }
 
 #solution h4 {
-  margin: 0;
   margin-bottom: .5em;
 }
 
@@ -148,6 +146,7 @@ input:valid~.valid-feedback {
 }
 
 .search-bar {
+  margin-bottom: 1.2em;
   display: flex;
   flex-direction: column;
   gap: .5em;
@@ -183,6 +182,10 @@ input:valid~.valid-feedback {
   padding-block: 1.2em;
 }
 
+.question:first-child {
+  padding-top: 0;
+}
+
 .question h4 {
   margin-top: 0;
   margin-bottom: .5em;
@@ -216,4 +219,8 @@ input:valid~.valid-feedback {
 
 #theme-toggle:hover {
   opacity: 1;
+}
+
+noscript {
+  color: red;
 }
